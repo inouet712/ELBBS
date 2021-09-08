@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ユーザー情報変更</title>
+<link th:href="@{/css/infoedit.css}" rel="stylesheet">
+</head>
+
+	<header>
+		
+		<a class="button" th:href= "@{/user/info/{id} (id=*{id})}" >戻る</a>
+		
+	</header>
+
+<body>
+<h1>ユーザー情報変更</h1>
+
+	<form th:action = "@{/user/edit}" th:method ="post" th:object = "${user}">
+		<input type ="hidden" name = id th:value = "${user.id}">
+	
+			<p class="namae">NAME<p>
+				<div>
+					<input class="name" type ="text" name ="name" th:value ="${name}">
+				</div>
+			<p class="pass">PASS</p>
+				<div>
+					<input class="password" type ="text" name ="password" th:value ="${password}">
+				</div>
+			<button class="kadomaru" type ="submit" name="update">登録</button>
+	</form>
+	
+</body>
+
+<footer class="footer"></footer>
+
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.PostMapper">
+<select id="selectAll" resultType ="com.example.demo.domain.Post">
+	select * from post
+</select>
+
+<insert id="insert" useGeneratedKeys="true" parameterType="com.example.demo.domain.User">
+	insert into post (id,title,name,content) values (#{id},#{title}, #{name}, #{content})
+</insert>
+
+<select id="select" resultType="com.example.demo.domain.Post">
+	select * from post where id = #{id}
+</select>
+
+<delete id ="delete" >
+	delete from post where id = #{id}
+</delete>
+
+<update id ="update" >
+	update post set name = #{name}, content = #{content}, title =#{title} where id = #{id}
+</update>
+
+</mapper>
+

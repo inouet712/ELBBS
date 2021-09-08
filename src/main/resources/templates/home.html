@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>新規登録</title>
+ <link th:href="@{/css/home.css}" rel="stylesheet">
+</head>
+<body>
+	
+	<div class="text" >
+	<form th:action="@{/user/add}" th:object="${user}" method = "post">
+	
+		
+			<p class ="name">NAME<p/>
+			<div class ="nametext">
+			<input type="text" name ="name" th:value = "${name}"></div>
+		
+		
+			<p class="pass">PASS</p>
+			
+			<div class="passtext">
+			<input type = "text" name = "password" th:value = "${password}"></div>
+		
+		
+		
+			<button class="kadomaru" type="submit" name ="input">登録</button>
+	</form>
+			<a class="maru"  th:href="${'/post/sred'}" >戻る</a>
+	</div>
+	
+</body>
+</html>

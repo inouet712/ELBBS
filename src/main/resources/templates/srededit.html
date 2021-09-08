@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>投稿編集</title>
+ <link th:href="@{/css/srededit.css}" rel="stylesheet">
+</head>
+
+	<header>
+		<a class="button" th:href= "${'/post/sred'}" th:name="投稿一覧" >戻る</a>
+	</header>
+
+<body>
+	<h1>投稿編集</h1>
+	<form th:action="@{/post/edit}" method ="post">
+		<input type ="hidden" name ="id" th:value ="${id}">
+		
+				<p class="daimei">題名</p>
+					<div>
+						<input class="title" type ="text" name = "title" th:value ="${title}">
+					</div>
+					
+				<p class="namae">名前</p>
+					<div>
+						<input class="name" type="text" name ="name" th:value ="${name}">
+					</div>
+					
+				<p class="honbun">本文</p>
+					<div>
+						<textarea class="content" name ="content" th:value ="${content}"></textarea>
+					</div>
+			
+				<button class="kadomaru" type ="submit" name ="update">更新</button>
+	</form>
+		
+</body>
+
+<footer class="footer"></footer>
+</html>

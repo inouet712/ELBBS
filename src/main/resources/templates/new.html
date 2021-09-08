@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>新規投稿</title>
+ <link th:href="@{/css/new.css}" rel="stylesheet">
+</head>
+	<header >
+	
+		<a class="button" th:href= "${'/post/sred'}" >戻る</a>
+		
+		<div class="cp_menu">
+		<label for="cp_menu_bar1">menu</label>
+		<input type="radio" name="radio" id="cp_menu_bar1" class="accordion" />
+		<ul id ="link1">
+		<li>
+			<a th:href= "${'/post/new'}" >新規作成</a>
+		</li>
+		<li>
+			<a th:href= "@{/user/info/{id} (id=*{id})}">ユーザー情報</a>
+		</li>
+		<li>
+			<!-- ログアウト -->
+			<div class="modal-open"><a href ="#modal">ログアウト</a></div>
+			
+			<div class="modal" id="modal">
+				<a href ="#!" class="overlay"></a>
+				<div class="modal-wrapper">
+					<div class="modal-contents">
+						<div class="modal-content">
+							<p>ログアウトしますか？</p><br>
+							<a href="#!" class="modal-close">いいえ</a>
+							<form  th:action ="@{/logout}" method ="post">
+							<button class="logout-botton" >はい</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>s
+		</li>
+		</ul>	
+		
+		</div>
+	
+	</header>
+	
+<body>
+
+	<h1>新規作成</h1>
+	
+		<form th:action="@{/post/new}" th:object="${post}" th:method="post" >
+		
+				<p class ="daimei">題名</p>
+					
+						<input class ="title" type ="text" name="title" th:value="${title}">
+					
+		
+				<p class="namae">名前	<input class="name" type ="text" name="name" th:value="${name}"></p>
+					
+						
+					
+			
+				<p class="honbun">本文 </p><textarea class="content" name="content" th:value="${content}"></textarea>
+				
+			
+						
+					
+		
+			<button class="kadomaru" type ="submit" name ="input" >投稿する</button>
+	</form>
+</body>
+
+<footer class="footer"></footer>
+</html>

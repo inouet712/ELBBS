@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>編集</title>
+<link th:href="@{/css/edit.css}" rel="stylesheet">
+</head>
+
+	<header>
+	
+		<a class="button" th:href= "@{/sentence/comment/{id} (id=*{id})}" >戻る</a>
+		
+	</header>
+
+<body>
+	<form th:method="post" th:action="@{/sentence/edit }"  th:object = ${comments}>
+		<input type ="hidden" name ="comment_id" th:value="${post.id}">
+		
+		<h1>コメント編集</h1>
+		
+		<p class="namae">NAME<p>
+			<div>
+				<input class="name" type ="text" name ="comment_name" th:value ="${comment_name}">
+			</div>
+		
+		<p class="comment">コメント<p>
+			<div>
+				<textarea class="content" name = "comment" th:value ="${comment}"></textarea>
+			</div>
+		
+		<button class="kadomaru" type ="submit" name="update">更新</button>
+		
+	</form>
+</body>
+
+<footer class="footer"></footer>
+</html>

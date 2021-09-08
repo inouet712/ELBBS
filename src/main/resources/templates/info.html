@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ユーザー一覧</title>
+<link th:href="@{/css/info.css}" rel="stylesheet">
+</head>
+
+	<header>
+		
+		<a class="button" th:href= "${'/post/sred'}" th:name="投稿一覧" >戻る</a>
+		
+		<div class="cp_menu">
+		<label for="cp_menu_bar1">menu</label>
+		<input type="radio" name="radio" id="cp_menu_bar1" class="accordion" />
+		<ul id ="link1">
+		<li>
+			<a th:href= "${'/post/new'}" >新規作成</a>
+		</li>
+		<li>
+			<a th:href= "@{/user/info/{id} (id=*{id})}">ユーザー情報</a>
+		</li>
+		<li>
+			<!-- ログアウト -->
+			<div class="modal-open"><a href ="#modal">ログアウト</a></div>
+			
+			<div class="modal" id="modal">
+				<a href ="#!" class="overlay"></a>
+				<div class="modal-wrapper">
+					<div class="modal-contents">
+						<div class="modal-content">
+							<p>ログアウトしますか？</p><br>
+							<a href="#!" class="modal-close">いいえ</a>
+							<form  th:action ="@{/logout}" method ="post">
+							<button class="logout-botton" >はい</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+		</ul>	
+		
+		</div>
+	</header>
+
+<body>
+	<table>
+		<tr>
+			<th>名前</th>
+			<th>PASSWORD</th>
+			<th></th>
+			<th></th>
+		</tr>
+	
+		<tr th:each = "user : ${user}" th:object="${user}">		
+			<td th:href="@{/user/info/{id} (id=*{id})}" th:text="${user.name}"></td>
+			<td th:text="${user.password}"></td>
+			
+		<td>
+			<form th:action="@{/user/{id} (id =*{id})}" th:method="post">
+			<input type="hidden" name ="id" th:value="${user.id}">
+			<button class="delete" name="delete" type ="submit">削除</button>
+			</form>
+		<td>
+		
+		 <a class="update" th:href="@{/user/info/{id} (id=*{id})}">編集</a> 
+		
+		</tr>
+	</table>
+	
+		
+</body>
+	
+	<footer class="footer"></footer>
+	
+</html>

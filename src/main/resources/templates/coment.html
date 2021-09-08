@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta http-equiv= content-type charset="UTF-8">
+
+ <link th:href="@{/css/coment.css}" rel="stylesheet">
+<title>本文</title>
+
+</head>
+
+<!-- ヘッダー -->
+<header >
+	
+		
+			<a class="button" th:href= "${'/post/sred'}" >戻る</a>
+		
+			<div class="cp_menu">
+		<label for="cp_menu_bar1">menu</label>
+		<input type="radio" name="radio" id="cp_menu_bar1" class="accordion" />
+		<ul id ="link1">
+		<li>
+			<a th:href= "${'/post/new'}" >新規作成</a>
+		</li>
+		<li>
+			<a th:href= "@{/user/info}">ユーザー情報</a>
+		</li>
+		<li>
+			<!-- ログアウト -->
+			<div class="modal-open"><a href ="#modal">ログアウト</a></div>
+			
+			<div class="modal" id="modal">
+				<a href ="#!" class="overlay"></a>
+				<div class="modal-wrapper">
+					<div class="modal-contents">
+						<div class="modal-content">
+							<p>ログアウトしますか？</p><br>
+							<a href="#!" class="modal-close">いいえ</a>
+							<form  th:action ="@{/logout}" method ="post">
+							<button class="logout-botton" >はい</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+		</ul>	
+		
+		</div>
+	
+	
+</header>
+
+<body>	
+		
+		<div th:object="${post}">
+			<div class="title">
+				<a  th:text="${post.title}"></a>
+				<p class="name">名前<a class="name" th:text="${post.name}"></a></p>
+			</div>
+			<div class="content">
+				<p th:text="${post.content}"></p>
+			</div>
+				
+		</div>
+
+	
+	<h3>コメント</h3>
+	<hr>
+	
+		<div class="aho">
+			<form   th:action = "@{/sentence/addcontent}" th:object = "${comments}"  method = "post" >
+		
+				<!-- post.idをcomment_idに格納 -->
+				
+					<input type ="hidden" name = "comment_id" th:value="${post.id}">
+				
+			
+				
+					<p class="input-name">名前</p>
+					<input class="input-text" type = "text" name = "comment_name" th:value="${comment_name}">
+				
+			
+				
+					<textarea class="content" name = "comment" th:value = "${comment}" ></textarea>
+				
+					<button class="kadomaru" type ="submit" name="input" >送信する</button>
+		</form>
+	</div>
+
+	
+		<div   th:each="comments : ${comments}" th:object= "${comments}">
+		<div class="class" >
+			<a class="content_name" th:text = "${comments.comment_name}"></a>
+			<a class="comment" th:text = "${comments.comment}"></a>
+			
+		<!-- 削除 -->
+			<form class="delete" th:method = "post" th:action = "@{/sentence/{id} (id=*{comment_id})}">
+				<input type = "hidden" name = "comment_name" th:value = "${comments.comment_name}">
+				<button class="delete" type = "submit" id = "delete">削除</button>
+			</form>
+		
+		<!-- 編集 -->
+			<form class="update" th:action = "@{/sentence/edit/{id} (id=*{comment_id}) }" th:method = "post">
+				<button class="update" type ="submit"  id ="update">編集</button>
+			</form>
+			</div>
+	</div>
+
+</body>
+	<footer class="footer" ></footer>
+
+</html>

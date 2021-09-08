@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+.footer {
+	padding: 10px;
+	background-color: lightskyblue;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+header {
+	
+	background-color: lightskyblue;
+	padding: 10px;
+	
+	top:0;
+	
+}
+
+a.button {
+		background: white;
+	color: black;
+	padding: 10px 10px 10px 10px;
+	text-decoration: none;
+	letter-spacing: 0.1em;
+	border-radius: 0.5rem;
+}
+
+h1 {
+	text-align: center;
+}
+
+.title {
+	position: absolute;
+	margin: 20px 0px 0px 600px;
+	height: 25px;
+	width: 250px;
+}
+
+.name {
+	position: absolute;
+	margin: 115px 0px 0px 600px;
+	height: 25px;
+	width: 250px;
+}
+
+.content {
+	position: absolute;
+	margin: 215px 0px 0px 600px;
+	resize: none;
+	height: 230px;
+	width: 500px;
+}
+
+.daimei {
+	position: absolute;
+	margin: 25px 0px 0px 520px;
+}
+
+.namae {
+	position: absolute;
+	margin: 120px 0px 0px 520px;
+}
+
+.honbun {
+	position: absolute;
+	margin: 225px 0px 0px 520px;
+}
+
+.kadomaru {
+	position: absolute;
+	margin: 500px 0px 0px 670px;
+	background: lightskyblue;
+	color: white;
+	padding: 5px 30px 5px 30px;
+	border: none;
+	border-radius: 20px;
+	box-shadow: 0 5px rgb(37, 49, 55);
+}
+
+.kadomaru:active {
+	box-shadow: none;
+	position: relative;
+	top: 5px;
+}

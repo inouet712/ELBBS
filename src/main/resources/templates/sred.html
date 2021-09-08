@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>投稿一覧</title>
+
+<link rel ="stylesheet" href ="/css/sred.css"/>
+</head>
+
+
+<header >
+	
+		
+			<a class="button" th:href= "${'/post/sred'}" >戻る</a>
+		
+			<div class="cp_menu">
+		<label for="cp_menu_bar1">menu</label>
+		<input type="radio" name="radio" id="cp_menu_bar1" class="accordion" />
+		<ul id ="link1">
+		<li>
+			<a th:href= "${'/post/new'}" >新規作成</a>
+		</li>
+		<li>
+			<a th:href= "@{/user/info/{id} (id=*{id})}">ユーザー情報</a>
+		</li>
+		<li>
+			<!-- ログアウト -->
+			<div class="modal-open"><a href ="#modal">ログアウト</a></div>
+			
+			<div class="modal" id="modal">
+				<a href ="#!" class="overlay"></a>
+				<div class="modal-wrapper">
+					<div class="modal-contents">
+						<div class="modal-content">
+							<p>ログアウトしますか？</p><br>
+							<a href="#!" class="modal-close">いいえ</a>
+							<form  th:action ="@{/logout}" method ="post">
+							<button class="logout-botton" >はい</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+		</ul>	
+		
+		</div>
+	
+	
+</header>
+
+
+
+
+	<body>		
+			<div th:each = "post : ${post}" th:object="${post}">
+				<!-- 選択した題名の本文の表示 -->
+				<div class="title">
+					<a th:href = "@{/sentence/comment/{id} (id = *{id})}" th:text="${post.title}"></a>
+				
+					<p class="name">名前 <a th:text="${post.name}"></a></p>
+				
+					
+					<!-- 投稿削除 -->	
+					<form  th:action="@{/post/{id} (id =*{id})}" th:method="post">
+						<input type ="hidden" name ="id" th:value ="${post.id}">
+						<button class="delete" type ="submit" name ="delete" >削除</button>
+					</form>
+					<!-- 投稿編集 -->
+					<div>
+					<form  th:action="@{/post/edit/{id} (id =*{id})}" th:method="post">
+						<input type ="hidden" name ="id" th:value="${post.id}">
+						<button class="edit" type ="submit" name ="edit">編集</button>
+					</form>
+					</div>
+				</div>
+			</div>
+</body>
+
+	<footer class="footer"></footer>
+	
+</html>

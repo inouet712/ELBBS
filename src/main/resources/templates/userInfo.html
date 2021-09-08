@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ユーザー情報</title>
+<link th:href="@{/css/userInfo.css}" rel="stylesheet">
+</head>
+
+<header>
+
+	<a class="button" th:href= "${'/user/info'}" >戻る</a>
+	
+	<div class="cp_menu">
+		<label for="cp_menu_bar1">menu</label>
+		<input type="radio" name="radio" id="cp_menu_bar1" class="accordion" />
+		<ul id ="link1">
+		<li>
+			<a th:href= "${'/post/new'}" >新規作成</a>
+		</li>
+		<li>
+			<a th:href= "@{/user/info/{id} (id=*{id})}">ユーザー情報</a>
+		</li>
+		<li>
+			<!-- ログアウト -->
+			<div class="modal-open"><a href ="#modal">ログアウト</a></div>
+			
+			<div class="modal" id="modal">
+				<a href ="#!" class="overlay"></a>
+				<div class="modal-wrapper">
+					<div class="modal-contents">
+						<div class="modal-content">
+							<p>ログアウトしますか？</p><br>
+							<a href="#!" class="modal-close">いいえ</a>
+							<form  th:action ="@{/logout}" method ="post">
+							<button class="logout-botton" >はい</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</li>
+		</ul>	
+		
+		</div>
+	
+
+</header>
+
+<body>
+	<h1>ユーザー情報</h1>
+		<div class="hr">
+			<hr class="hr-1">
+			<hr class="hr-2">
+			<hr class="hr-3">
+		</div>
+		
+			
+				<div th:object="${info}">	
+				<p class ="namae">NAME</p>
+					<p class="name" th:text="${info.name}">
+					</p>
+					<p class="pass">PASS</p>
+					<p class="password" th:text="${info.password}">
+					</p>
+				</div>
+			
+			<form th:action = "@{/user/edit/{id} (id=*{id}) }" th:method = "post">
+				
+				<button class="kadomaru" type ="submit"  id ="update">編集</button>
+			</form>
+</body>
+
+<footer class="footer"></footer>
+</html>
